@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
 from library.models import Book
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -8,6 +9,17 @@ from django.contrib.auth.decorators import login_required
 def get_auth(request):
     template = get_template('users/auth.html')
     return HttpResponse(template.render({}, request))
+
+
+def authorize(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    print(username, password)
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        return redirect('/library/books')
+    else:
+        return redirect('/library/auth')
 
 
 @login_required
