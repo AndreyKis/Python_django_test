@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container-fluid">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Library</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class={% if "library" in request.path %} "active" {% endif %}><a id="ClearArea" href="#">Books</a></li>
+                <li class= {% if "library" in request.path %} "active" {% endif %}><a id="DrawPoints" href="#">Draw polygon</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input id="numberOfPoints" type="text" class="form-control" placeholder="Amount of points">
+                </div>
+                <button id="generateRandomPoligon" type="submit" class="btn btn-default">Algorithm</button>
+                <button id="generateLibHull" type="submit" class="btn btn-default">Library</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#openModal">Help</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact info <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Phone: +380935555555</a></li>
+                        <li><a href="#">E-mail: andr.kisilevskiy@gmail.com</a></li>
+                        <li><a href="#">Address: Glushkova 4D</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Created: 25.05.2017</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

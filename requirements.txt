@@ -1,0 +1,4 @@
+Django==1.11.2
+psycopg2==2.7.1
+py-postgresql==1.2.1
+pytz==2017.2

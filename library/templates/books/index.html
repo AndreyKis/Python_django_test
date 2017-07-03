@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <title>Books</title>
+</head>
+<body>
+{% extends 'common/base.html' %}
+
+{% block content %}
+    {% if latest_books_list %}
+        <ul>
+            {% for book in latest_books_list %}
+                <li><a href="/library/books/{{ book.id }}/">Book: {{ book.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books are available.</p>
+    {% endif %}
+{% endblock content %}
+</body>
+</html>

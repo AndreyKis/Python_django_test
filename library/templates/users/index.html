@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+{% if latest_books_list %}
+    <ul>
+    {% for book in latest_books_list %}
+        <li><a href="/polls/{{ book.id }}/">Book: {{ book.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No books are available.</p>
+{% endif %}
+</body>
+</html>
