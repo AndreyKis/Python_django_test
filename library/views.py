@@ -4,6 +4,7 @@ from library.models import Book
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
 def get_auth(request):
@@ -12,19 +13,25 @@ def get_auth(request):
 
 
 def authorize(request):
-    username = request.POST['username']
-    password = request.POST['password']
+    username = request.POST.get('username', "")
+    password = request.POST.get('password', "")
     print(username, password)
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        return redirect('/library/books')
+        login(request, user)
+        return redirect('/library/books/')
     else:
-        return redirect('/library/auth')
+        return redirect('/library/auth/')
+
+
+@login_required
+def logout_view(request):
+    logout(request)
 
 
 @login_required
 def index(request):
-    latest_books_list = Book.objects.order_by('pub_date')[:5]
+    latest_books_list = Book.objects.order_by('pub_date')
     template = get_template('books/index.html')
     context = {
         'latest_books_list': latest_books_list,

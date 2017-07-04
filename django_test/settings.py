@@ -28,6 +28,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+LOGIN_URL = [
+    '/library/auth/'
+]
+
 INSTALLED_APPS = [
     'library.apps.PollsConfig',
     'django.contrib.admin',
